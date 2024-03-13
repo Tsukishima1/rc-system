@@ -9,12 +9,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ChevronLeft, UserRoundPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import RegisterDataModal from "../_components/RegisterDataModal";
+import { useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 const LoginPage = () => {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <div>
@@ -39,7 +56,11 @@ const LoginPage = () => {
           <CardDescription>欢迎加入我们</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div className="flex flex-col gap-2 mb-2">
               <label
                 htmlFor="username"
@@ -66,7 +87,25 @@ const LoginPage = () => {
                 className="dark:bg-zinc-700/40"
               />
             </div>
-            <Button className="w-full">注册</Button>
+            <Dialog>
+              <DialogTrigger className="w-full">
+                <Button className="w-full" onClick={() => {}}>
+                  注册
+                </Button>
+              </DialogTrigger>
+              <DialogContent onPointerDownOutside={(e)=>{
+                e.preventDefault();
+              } } className="max-w-[32rem]">
+                <DialogHeader>
+                  <DialogTitle>创建新用户</DialogTitle>
+                  <DialogDescription>
+                    恭喜您注册成功，进行下一步操作！
+                  </DialogDescription>
+                  <span className="h-[10px] w-full my-5"></span>
+                  <RegisterDataModal />
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </form>
         </CardContent>
         <CardFooter className="flex justify-end">
