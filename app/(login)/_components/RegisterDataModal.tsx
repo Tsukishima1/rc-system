@@ -32,8 +32,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation"; 
 
 const RegisterDataModal = () => {
+  const router = useRouter();
+
   const formSchemaForEmployee = z.object({
     name: z.string().min(1, {
       message: "姓名是必填项",
@@ -108,10 +112,14 @@ const RegisterDataModal = () => {
   const onSubmitForEEform = () => {
     // 列出表单数据
     console.log(formForEmployee.getValues());
+    toast.success("注册成功，请重新登录!");
+    router.push("/login");
   };
   const onSubmitForERform = () => {
     // 列出表单数据
     console.log(formForEmployer.getValues());
+    toast.success("注册成功，请重新登录!");
+    router.push("/login");
   };
 
   return (
