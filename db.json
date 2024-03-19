@@ -1,0 +1,61 @@
+{
+  "employee": [
+    {
+      "id": "123a",
+      "username": "a",
+      "password": "password123"
+    },
+    {
+      "id": "e9c4",
+      "username": "abc",
+      "password": "ddd"
+    },
+    {
+      "id": "80ef",
+      "username": "abcd",
+      "password": "ddd"
+    },
+    {
+      "id": "76be",
+      "username": "111",
+      "password": "1111"
+    },
+    {
+      "id": "1761",
+      "username": "abc",
+      "password": "ddd"
+    },
+    {
+      "id": "b146",
+      "username": "abc",
+      "password": "ddd"
+    },
+    {
+      "id": "2fc5",
+      "username": "abc",
+      "password": "123"
+    },
+    {
+      "id": "69d1",
+      "username": "abc",
+      "password": "123"
+    },
+    {
+      "id": "3a5b",
+      "username": "abc",
+      "password": "abc"
+    },
+    {
+      "id": "5dea",
+      "username": "abc",
+      "password": "123"
+    }
+  ],
+  "employer": [
+    {
+      "id": "123b",
+      "username": "b",
+      "password": "password123"
+    }
+  ]
+}

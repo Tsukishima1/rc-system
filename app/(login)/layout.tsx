@@ -1,3 +1,5 @@
+import { Toaster } from "sonner";
+
 const LoginLayout = ({children}:{
   children: React.ReactNode
 }) => {

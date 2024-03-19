@@ -11,10 +11,41 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, LogIn } from "lucide-react";
+
+import { employeeLogin, employerLogin } from "@/http/api/login";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import { toast } from "sonner";
 
 const LoginPage = () => {
+  // 使用ref获取input的值
   const router = useRouter();
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const afterLogin = () => {
+    router.push("/");
+    toast.success("登录成功!");
+
+    localStorage.setItem("isLogin", "true");
+
+    usernameRef.current!.value = "";
+    passwordRef.current!.value = "";
+  };
+
+  const employeeLog = () => {
+    employeeLogin({
+      username: usernameRef.current?.value,
+      password: passwordRef.current?.value,
+    }).then((res) => afterLogin());
+  };
+
+  const employerLog = () => {
+    employerLogin({
+      username: usernameRef.current?.value,
+      password: passwordRef.current?.value,
+    }).then((res) => afterLogin());
+  };
 
   return (
     <div>
@@ -39,7 +70,11 @@ const LoginPage = () => {
           <CardDescription>欢迎回来</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div className="flex flex-col gap-2 mb-2">
               <label
                 htmlFor="username"
@@ -48,6 +83,7 @@ const LoginPage = () => {
                 用户名
               </label>
               <Input
+                ref={usernameRef}
                 type="text"
                 id="username"
                 className="dark:bg-zinc-700/40"
@@ -61,12 +97,21 @@ const LoginPage = () => {
                 密码
               </label>
               <Input
+                ref={passwordRef}
                 type="password"
                 id="password"
                 className="dark:bg-zinc-700/40"
               />
             </div>
-            <Button className="w-full">登录</Button>
+            <Button
+              className="w-full mb-3 bg-slate-600 hover:bg-slate-600/90 dark:bg-slate-300 dark:hover:bg-slate-300/90"
+              onClick={employeeLog}
+            >
+              我是求职者
+            </Button>
+            <Button className="w-full" onClick={employerLog}>
+              我是企业方
+            </Button>
           </form>
         </CardContent>
         <CardFooter className="flex">
@@ -75,7 +120,6 @@ const LoginPage = () => {
               忘记密码
             </Button>
           </div>
-
           <Button
             variant="link"
             className="p-0"
