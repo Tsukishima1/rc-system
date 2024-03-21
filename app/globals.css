@@ -73,4 +73,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  textarea {
+    font-family: system-ui !important;
+  }
 }

@@ -32,6 +32,11 @@ const NavigationBar = () => {
     router.push("/login");
   }
 
+  const handleClickProfile = () => {
+    // 跳转到用户id对应的个人资料页面
+    router.push(`/${localStorage.getItem("userId")}`);
+  }
+
   return (
     <div className="navigation-bar bg-zinc-100/70 p-4 flex items-center dark:bg-zinc-800 px-28">
       <div className="flex items-center">
@@ -82,7 +87,9 @@ const NavigationBar = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="min-w-0 text-muted-foreground">
-              <DropdownMenuItem>个人资料</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleClickProfile}
+              >个人资料</DropdownMenuItem>
               <DropdownMenuItem
                 onClick={handleSignOut}
               >退出登录</DropdownMenuItem>

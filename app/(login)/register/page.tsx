@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import RegisterDataModal from "../_components/RegisterDataModal";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import RegisterBoss from "../_components/register-boss";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -32,6 +33,10 @@ const LoginPage = () => {
   }, []);
 
   if (!isMounted) return null;
+
+  const handleWriteResume = () => {
+    router.push(`/${localStorage.getItem("userId")}`);
+  };
 
   return (
     <div>
@@ -56,57 +61,40 @@ const LoginPage = () => {
           <CardDescription>欢迎加入我们</CardDescription>
         </CardHeader>
         <CardContent>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
+          <div className="flex flex-col gap-2 mb-2">
+            <label htmlFor="username" className="text-muted-foreground text-sm">
+              用户名
+            </label>
+            <Input type="text" id="username" className="dark:bg-zinc-700/40" />
+          </div>
+          <div className="flex flex-col gap-2 mb-5">
+            <label htmlFor="password" className="text-muted-foreground text-sm">
+              密码
+            </label>
+            <Input
+              type="password"
+              id="password"
+              className="dark:bg-zinc-700/40"
+            />
+          </div>
+          <Button
+            className="w-full mb-3 bg-slate-600 hover:bg-slate-600/90 dark:bg-slate-300 dark:hover:bg-slate-300/90"
+            onClick={() => {
+              router.push("/guide");
+              localStorage.setItem("userType", "employee");
             }}
           >
-            <div className="flex flex-col gap-2 mb-2">
-              <label
-                htmlFor="username"
-                className="text-muted-foreground text-sm"
-              >
-                用户名
-              </label>
-              <Input
-                type="text"
-                id="username"
-                className="dark:bg-zinc-700/40"
-              />
-            </div>
-            <div className="flex flex-col gap-2 mb-5">
-              <label
-                htmlFor="password"
-                className="text-muted-foreground text-sm"
-              >
-                密码
-              </label>
-              <Input
-                type="password"
-                id="password"
-                className="dark:bg-zinc-700/40"
-              />
-            </div>
-            <Dialog>
-              <DialogTrigger className="w-full">
-                <Button className="w-full" onClick={() => {}}>
-                  注册
-                </Button>
-              </DialogTrigger>
-              <DialogContent onPointerDownOutside={(e)=>{
-                e.preventDefault();
-              } } className="max-w-[32rem]">
-                <DialogHeader>
-                  <DialogTitle>创建新用户</DialogTitle>
-                  <DialogDescription>
-                    恭喜您注册成功，进行下一步操作！
-                  </DialogDescription>
-                  <span className="h-[10px] w-full my-5"></span>
-                  <RegisterDataModal />
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-          </form>
+            我是求职者
+          </Button>
+          <Button
+            className="w-full"
+            onClick={() => {
+              router.push("/guide");
+              localStorage.setItem("userType", "employer");
+            }}
+          >
+            我是企业方
+          </Button>
         </CardContent>
         <CardFooter className="flex justify-end">
           <Button

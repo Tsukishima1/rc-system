@@ -37,14 +37,22 @@ const LoginPage = () => {
     employeeLogin({
       username: usernameRef.current?.value,
       password: passwordRef.current?.value,
-    }).then((res) => afterLogin());
+    }).then((res) => {
+      console.log(res);
+      
+      afterLogin();
+      localStorage.setItem("userId", res.data.id);
+    });
   };
 
   const employerLog = () => {
     employerLogin({
       username: usernameRef.current?.value,
       password: passwordRef.current?.value,
-    }).then((res) => afterLogin());
+    }).then((res) => {
+      afterLogin();
+      localStorage.setItem("userId", res.data.id);
+    });
   };
 
   return (
