@@ -22,10 +22,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+import { useEffect, useState } from "react";
 
 const NavigationBar = () => {
   const router = useRouter();
-  const isLogin = localStorage.getItem("isLogin");
+  // let isLogin;
+  // if (typeof window !== "undefined") isLogin = localStorage.getItem("isLogin");
+  const [isLogin, setIsLogin] = useState("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsLogin(localStorage.getItem("isLogin") ?? "");
+    }
+  }, []);
 
   const handleSignOut = () => {
     localStorage.removeItem("isLogin");
