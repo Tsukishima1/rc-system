@@ -38,6 +38,9 @@ const NavigationBar = () => {
   const handleSignOut = () => {
     localStorage.removeItem("isLogin");
     router.push("/login");
+
+    // 清除所有localStorage
+    localStorage.clear();
   }
 
   const handleClickProfile = () => {
@@ -91,7 +94,7 @@ const NavigationBar = () => {
                 variant="default"
                 className="w-10 h-10 p-0 rounded-full border-2"
               >
-                X
+                {localStorage.getItem("username")?.charAt(0).toUpperCase() ?? "X"}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="min-w-0 text-muted-foreground">

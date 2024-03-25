@@ -1,3 +1,5 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Dot, Pencil, Mail, MapPin, NotepadText, Phone } from "lucide-react";
@@ -5,16 +7,18 @@ import { Textarea } from "@/components/ui/textarea";
 
 const profilePage = () => {
   const userInfo = {
-    name: "张晓恒",
-    sex: "男",
-    age: "22",
-    phone: "12345678901",
-    email: "1721214644@qq.com",
-    address: "广东省广州市天河区",
-    degree: "本科",
-    major: "软件工程",
-    school: "华南理工大学",
-  };
+    name: typeof window !== 'undefined' ? localStorage.getItem("username") : null,
+    sex: typeof window !== 'undefined' ? localStorage.getItem("sex") : null,
+    phoneNumber: typeof window !== 'undefined' ? localStorage.getItem("phoneNumber") : null,
+    email: typeof window !== 'undefined' ? localStorage.getItem("email") : null,
+    address: typeof window !== 'undefined' ? localStorage.getItem("address") : null,
+    degree: typeof window !== 'undefined' ? localStorage.getItem("degree") : null,
+    major: typeof window !== 'undefined' ? localStorage.getItem("major") : null,
+    school: typeof window !== 'undefined' ? localStorage.getItem("school") : null,
+    award: typeof window !== 'undefined' ? localStorage.getItem("award") : null,
+    skill: typeof window !== 'undefined' ? localStorage.getItem("skill") : null,
+    project: typeof window !== 'undefined' ? localStorage.getItem("project") : null,
+  }
 
   return (
     <div className="bg-zinc-100 min-h-screen py-20 dark:bg-zinc-800/50">
@@ -40,7 +44,7 @@ const profilePage = () => {
             <div className="flex gap-8">
               <div className="flex gap-2 items-center">
                 <Phone className="w-5 h-5 text-muted-foreground" />
-                <p className="">{userInfo.phone}</p>
+                <p className="">{userInfo.phoneNumber}</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Mail className="w-5 h-5 text-muted-foreground" />
@@ -63,16 +67,10 @@ const profilePage = () => {
               <p className="text-muted-foreground">毕业于</p>
               {userInfo.school} - {userInfo.major}
             </div>
-            <div className="flex gap-3 text-muted-foreground relative flex-col">
-              <div className="flex gap-1">
-                <Dot />
-                <p className="font-bold mr-2">在校获奖情况</p>
-                <button>
-                  <Pencil className="w-4 h-4" />
-                </button>
-              </div>
-              <Textarea className="text-[1rem] font-serif text-zinc-900"/>
-            </div>
+            <Textarea
+              className="text-[1rem] font-serif text-zinc-900"
+              value={userInfo.award || ""}
+            />
           </div>
           <Separator className="my-6 dark:bg-zinc-500" />
           <div className="flex w-full flex-col gap-3">

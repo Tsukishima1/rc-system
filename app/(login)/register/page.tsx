@@ -21,9 +21,11 @@ import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ChevronLeft, UserRoundPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import RegisterDataModal from "../_components/RegisterDataModal";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Separator } from "@/components/ui/separator";
 import RegisterBoss from "../_components/register-boss";
+import { employeeReg } from "@/http/api/login";
+import { toast } from "sonner";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -32,10 +34,62 @@ const LoginPage = () => {
     setIsMounted(true);
   }, []);
 
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
   if (!isMounted) return null;
 
-  const handleWriteResume = () => {
-    router.push(`/${localStorage.getItem("userId")}`);
+  const handleEmployeeRegister = () => {
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (!username || !password) {
+      alert("用户名或密码不能为空");
+      return;
+    }
+
+    employeeReg({ username, password }).then(
+      ({ data }) => {
+        localStorage.setItem("username", username);
+
+        // 清空输入框
+        usernameRef.current!.value = "";
+        passwordRef.current!.value = "";
+        localStorage.setItem("userId", data.id);
+        toast.success("注册成功");
+        router.push("/guide");
+        localStorage.setItem("userType", "employee");
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
+  const handleBossRegister = () => {
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (!username || !password) {
+      alert("用户名或密码不能为空");
+      return;
+    }
+
+    employeeReg({ username, password }).then(
+      ({ data }) => {
+        // 清空输入框
+        usernameRef.current!.value = "";
+        passwordRef.current!.value = "";
+
+        localStorage.setItem("userId", data.id);
+        localStorage.setItem("userType", "employee");
+        toast.success("注册成功");
+        router.push("/guide");
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   };
 
   return (
@@ -65,7 +119,12 @@ const LoginPage = () => {
             <label htmlFor="username" className="text-muted-foreground text-sm">
               用户名
             </label>
-            <Input type="text" id="username" className="dark:bg-zinc-700/40" />
+            <Input
+              type="text"
+              id="username"
+              ref={usernameRef}
+              className="dark:bg-zinc-700/40"
+            />
           </div>
           <div className="flex flex-col gap-2 mb-5">
             <label htmlFor="password" className="text-muted-foreground text-sm">
@@ -74,14 +133,14 @@ const LoginPage = () => {
             <Input
               type="password"
               id="password"
+              ref={passwordRef}
               className="dark:bg-zinc-700/40"
             />
           </div>
           <Button
             className="w-full mb-3 bg-slate-600 hover:bg-slate-600/90 dark:bg-slate-300 dark:hover:bg-slate-300/90"
             onClick={() => {
-              router.push("/guide");
-              localStorage.setItem("userType", "employee");
+              handleEmployeeRegister();
             }}
           >
             我是求职者
@@ -89,8 +148,7 @@ const LoginPage = () => {
           <Button
             className="w-full"
             onClick={() => {
-              router.push("/guide");
-              localStorage.setItem("userType", "employer");
+              handleBossRegister();
             }}
           >
             我是企业方

@@ -29,6 +29,8 @@ const LoginPage = () => {
 
     localStorage.setItem("isLogin", "true");
 
+    localStorage.setItem("username", usernameRef.current!.value);
+
     usernameRef.current!.value = "";
     passwordRef.current!.value = "";
   };
@@ -38,8 +40,6 @@ const LoginPage = () => {
       username: usernameRef.current?.value,
       password: passwordRef.current?.value,
     }).then((res) => {
-      console.log(res);
-      
       afterLogin();
       localStorage.setItem("userId", res.data.id);
     });

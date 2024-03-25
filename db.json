@@ -1,89 +1,9 @@
 {
   "employee": [
     {
-      "id": "123a",
-      "username": "a",
-      "password": "password123"
-    },
-    {
-      "id": "e9c4",
-      "username": "abc",
-      "password": "ddd"
-    },
-    {
-      "id": "80ef",
-      "username": "abcd",
-      "password": "ddd"
-    },
-    {
-      "id": "76be",
-      "username": "111",
-      "password": "1111"
-    },
-    {
-      "id": "1761",
-      "username": "abc",
-      "password": "ddd"
-    },
-    {
-      "id": "b146",
-      "username": "abc",
-      "password": "ddd"
-    },
-    {
-      "id": "2fc5",
-      "username": "abc",
-      "password": "123"
-    },
-    {
-      "id": "69d1",
-      "username": "abc",
-      "password": "123"
-    },
-    {
-      "id": "3a5b",
-      "username": "abc",
-      "password": "abc"
-    },
-    {
-      "id": "5dea",
-      "username": "abc",
-      "password": "123"
-    },
-    {
-      "id": "20f4",
-      "username": "abc",
-      "password": "ddd"
-    },
-    {
-      "id": "b7f3",
-      "username": "abc",
-      "password": "ddd"
-    },
-    {
-      "id": "b74b",
-      "username": "ac",
-      "password": "ddd"
-    },
-    {
-      "id": "4046",
-      "username": "",
-      "password": ""
-    },
-    {
-      "id": "3a02",
-      "username": "",
-      "password": ""
-    },
-    {
-      "id": "19d2",
-      "username": "",
-      "password": ""
-    },
-    {
-      "id": "d6c8",
-      "username": "",
-      "password": ""
+      "id": "1749",
+      "username": "jinx",
+      "password": "111223"
     }
   ],
   "employer": [
@@ -91,6 +11,23 @@
       "id": "123b",
       "username": "b",
       "password": "password123"
+    }
+  ],
+  "resume": [
+    {
+      "id": "6150",
+      "name": "吴苡瑕",
+      "sex": "女",
+      "phoneNumber": "19866509957",
+      "email": "19866509957@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "111",
+      "project": "333",
+      "skill": "222",
+      "userId": "1749"
     }
   ]
 }

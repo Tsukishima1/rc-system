@@ -26,10 +26,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@radix-ui/react-label";
+import { uploadResume } from "@/http/api/login";
+import { useRouter } from "next/navigation";
 
 const RegisterEmployee = () => {
+  const router = useRouter();
   const [status, setStatus] = useState("undefined");
   const [file, setFile] = useState<File | null>(null);
+  const userId = localStorage.getItem("userId");
 
   const formSchemaForEmployee = z.object({
     name: z.string().min(1, {
@@ -112,7 +116,25 @@ const RegisterEmployee = () => {
 
   const onSubmitForEEform = () => {
     // 列出表单数据
-    console.log(formForEmployee.getValues());
+    // console.log(formForEmployee.getValues());
+
+    uploadResume({...formForEmployee.getValues(), userId}).then(
+      ({data}) => {
+        console.log(data.id);
+        localStorage.setItem("isLogin", "true");
+
+        // 将表单所有数据压缩存入localStorage
+        const formValues = formForEmployee.getValues();
+        for (const key in formValues) {
+          localStorage.setItem(key, formValues[key as keyof typeof formValues]);
+        }
+        
+        router.push("/");
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   };
 
   return (
@@ -195,8 +217,8 @@ const RegisterEmployee = () => {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectGroup>
-                                  <SelectItem value="male">男</SelectItem>
-                                  <SelectItem value="female">女</SelectItem>
+                                  <SelectItem value="男">男</SelectItem>
+                                  <SelectItem value="女">女</SelectItem>
                                 </SelectGroup>
                               </SelectContent>
                             </Select>
@@ -286,17 +308,9 @@ const RegisterEmployee = () => {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectGroup>
-                                  <SelectItem value="technicalSchool">
-                                    中专
-                                  </SelectItem>
-                                  <SelectItem value="juniorCollege">
-                                    大专
-                                  </SelectItem>
-                                  <SelectItem value="undergraduate">
-                                    本科
-                                  </SelectItem>
-                                  <SelectItem value="master">硕士</SelectItem>
-                                  <SelectItem value="phd">博士</SelectItem>
+                                  <SelectItem value="本科">本科</SelectItem>
+                                  <SelectItem value="硕士">硕士</SelectItem>
+                                  <SelectItem value="博士">博士</SelectItem>
                                 </SelectGroup>
                               </SelectContent>
                             </Select>
