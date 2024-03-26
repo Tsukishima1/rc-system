@@ -33,7 +33,7 @@ const RegisterEmployee = () => {
   const router = useRouter();
   const [status, setStatus] = useState("undefined");
   const [file, setFile] = useState<File | null>(null);
-  const userId = localStorage.getItem("userId");
+  const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : "";
 
   const formSchemaForEmployee = z.object({
     name: z.string().min(1, {
@@ -138,8 +138,8 @@ const RegisterEmployee = () => {
   };
 
   return (
-    <div className="min-h-screen p-20 bg-zinc-100 cursor-default">
-      <main className="mx-auto p-20 shadow-md rounded-3xl flex flex-col items-center bg-white max-w-[1000px] min-w-[600px] relative">
+    <div className="min-h-screen p-20 bg-zinc-100 dark:bg-zinc-800 cursor-default">
+      <main className="mx-auto p-20 shadow-md rounded-3xl flex flex-col items-center bg-white dark:bg-zinc-900 max-w-[1000px] min-w-[600px] relative">
         <div className="w-full">
           <p className="text-3xl font-bold mb-2">欢迎加入我们，新同学！</p>
           <p className="text-muted-foreground">请在下方填写你的个人信息</p>

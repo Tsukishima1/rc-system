@@ -4,6 +4,41 @@
       "id": "1749",
       "username": "jinx",
       "password": "111223"
+    },
+    {
+      "id": "2cca",
+      "username": "Ahaha",
+      "password": "jinx"
+    },
+    {
+      "id": "4536",
+      "username": "ahahaha",
+      "password": "123"
+    },
+    {
+      "id": "9962",
+      "username": "123456",
+      "password": "123"
+    },
+    {
+      "id": "a870",
+      "username": "123456",
+      "password": "123"
+    },
+    {
+      "id": "ee2a",
+      "username": "jinx",
+      "password": "123"
+    },
+    {
+      "id": "98c1",
+      "username": "jinx",
+      "password": "123123"
+    },
+    {
+      "id": "5029",
+      "username": "jinx",
+      "password": "2323"
     }
   ],
   "employer": [
@@ -11,6 +46,41 @@
       "id": "123b",
       "username": "b",
       "password": "password123"
+    },
+    {
+      "id": "46b4",
+      "username": "",
+      "password": ""
+    },
+    {
+      "id": "98ab",
+      "username": "123456",
+      "password": "123"
+    },
+    {
+      "id": "85ae",
+      "username": "123456",
+      "password": "123"
+    },
+    {
+      "id": "c7b8",
+      "username": "Tsukishima",
+      "password": "123"
+    },
+    {
+      "id": "b609",
+      "username": "Tsukihi",
+      "password": "jinx111"
+    },
+    {
+      "id": "5425",
+      "username": "Tsukishi",
+      "password": "123"
+    },
+    {
+      "id": "3435",
+      "username": "jinx",
+      "password": "111"
     }
   ],
   "resume": [
@@ -28,6 +98,55 @@
       "project": "333",
       "skill": "222",
       "userId": "1749"
+    },
+    {
+      "id": "00f6",
+      "name": "吴苡瑕",
+      "sex": "女",
+      "phoneNumber": "19866509957",
+      "email": "19866509957@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "1",
+      "project": "3",
+      "skill": "2",
+      "userId": "5029"
+    }
+  ],
+  "bossCard": [
+    {
+      "id": "1",
+      "userId": "1749",
+      "firstName": "jinx",
+      "sex": "女",
+      "company": "广东海洋大学",
+      "position": "学生"
+    },
+    {
+      "id": "9a26",
+      "firstName": "胡",
+      "sex": "男",
+      "companyName": "字节跳动",
+      "position": "前端工程师",
+      "userId": "b609"
+    },
+    {
+      "id": "2cbc",
+      "firstName": "何",
+      "sex": "男",
+      "companyName": "字节跳动",
+      "position": "前端工程师",
+      "userId": "5425"
+    },
+    {
+      "id": "4a09",
+      "firstName": "王",
+      "sex": "女",
+      "companyName": "腾讯科技",
+      "position": "人事",
+      "userId": "3435"
     }
   ]
 }

@@ -24,6 +24,23 @@ export function employerLogin(data: any) {
   });
 }
 
+export function employerReg(data: any) {
+  return myAxios({
+    url: "/api/employer",
+    method: "post",
+    data
+  });
+}
+
+// boss填写名片
+export function employerCard(data: any) {
+  return myAxios({
+    url: "/api/bossCard",
+    method: "post",
+    data
+  });
+}
+
 // 注册后上传简历
 export function uploadResume(data: any) {
   return myAxios({

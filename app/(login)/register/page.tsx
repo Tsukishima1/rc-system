@@ -20,11 +20,9 @@ import { Input } from "@/components/ui/input";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ChevronLeft, UserRoundPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import RegisterDataModal from "../_components/RegisterDataModal";
 import { useEffect, useState, useRef } from "react";
 import { Separator } from "@/components/ui/separator";
-import RegisterBoss from "../_components/register-boss";
-import { employeeReg } from "@/http/api/login";
+import { employeeReg, employerReg } from "@/http/api/login";
 import { toast } from "sonner";
 
 const LoginPage = () => {
@@ -75,14 +73,16 @@ const LoginPage = () => {
       return;
     }
 
-    employeeReg({ username, password }).then(
+    employerReg({ username, password }).then(
       ({ data }) => {
+        localStorage.setItem("username", username);
+
         // 清空输入框
         usernameRef.current!.value = "";
         passwordRef.current!.value = "";
 
         localStorage.setItem("userId", data.id);
-        localStorage.setItem("userType", "employee");
+        localStorage.setItem("userType", "employer");
         toast.success("注册成功");
         router.push("/guide");
       },

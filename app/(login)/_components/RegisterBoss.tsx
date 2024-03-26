@@ -24,12 +24,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
+import { employerCard } from "@/http/api/login";
+import { useRouter } from "next/navigation";
 
 const RegisterBoss = () => {
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : "";
 
   const formSchemaForEmployer = z.object({
     firstName: z.string().min(1, {
@@ -56,6 +62,23 @@ const RegisterBoss = () => {
   });
   const onSubmitForERform = () => {
     console.log(formForEmployer.getValues());
+    employerCard({ ...formForEmployer.getValues(), userId }).then(
+      ({ data }) => {
+        console.log(data.id);
+        localStorage.setItem("isLogin", "true");
+
+        // 将表单所有数据压缩存入localStorage
+        const formValues = formForEmployer.getValues();
+        for (const key in formValues) {
+          localStorage.setItem(key, formValues[key as keyof typeof formValues]);
+        }
+
+        router.push("/");
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   };
 
   return (
@@ -84,7 +107,11 @@ const RegisterBoss = () => {
                         姓氏
                       </FormLabel>
                       <FormControl>
-                        <Input id="name" {...field} className="text-[1.1rem] h-[3rem] w-[70px]" />
+                        <Input
+                          id="name"
+                          {...field}
+                          className="text-[1.1rem] h-[3rem] w-[70px]"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -109,8 +136,8 @@ const RegisterBoss = () => {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectGroup>
-                              <SelectItem value="male">先生</SelectItem>
-                              <SelectItem value="female">女士</SelectItem>
+                              <SelectItem value="男">先生</SelectItem>
+                              <SelectItem value="女">女士</SelectItem>
                             </SelectGroup>
                           </SelectContent>
                         </Select>
@@ -130,7 +157,11 @@ const RegisterBoss = () => {
                         公司名称
                       </FormLabel>
                       <FormControl>
-                        <Input id="companyName" {...field} className="text-[1.1rem] h-[3rem]"/>
+                        <Input
+                          id="companyName"
+                          {...field}
+                          className="text-[1.1rem] h-[3rem]"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -145,7 +176,11 @@ const RegisterBoss = () => {
                         您的职务
                       </FormLabel>
                       <FormControl>
-                        <Input id="position" {...field} className="text-[1.1rem] h-[3rem]"/>
+                        <Input
+                          id="position"
+                          {...field}
+                          className="text-[1.1rem] h-[3rem]"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
