@@ -8,7 +8,6 @@ import {
   SelectTrigger,
   SelectContent,
   SelectGroup,
-  SelectLabel,
   SelectItem,
   SelectValue,
 } from "@/components/ui/select";

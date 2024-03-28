@@ -9,19 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ChevronLeft, UserRoundPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
-import { Separator } from "@/components/ui/separator";
 import { employeeReg, employerReg } from "@/http/api/login";
 import { toast } from "sonner";
 

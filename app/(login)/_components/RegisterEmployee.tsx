@@ -23,9 +23,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@radix-ui/react-label";
 import { uploadResume } from "@/http/api/login";
 import { useRouter } from "next/navigation";
 
@@ -48,6 +46,7 @@ const RegisterEmployee = () => {
   const [award, setAward] = useState("");
   const [project, setProject] = useState("");
   const [skill, setSkill] = useState("");
+  const [desiredPosition, setDesiredPosition] = useState("");
 
   useEffect(() => {
     const storedName = localStorage.getItem("name");
@@ -62,6 +61,7 @@ const RegisterEmployee = () => {
     const storedAward = localStorage.getItem("award");
     const storedProject = localStorage.getItem("project");
     const storedSkill = localStorage.getItem("skill");
+    const storedDesiredPosition = localStorage.getItem("desiredPosition");
 
     if (storedName) {
       setName(storedName);
@@ -99,6 +99,9 @@ const RegisterEmployee = () => {
     if (storedSkill) {
       setSkill(storedSkill);
     }
+    if (storedDesiredPosition) {
+      setDesiredPosition(storedDesiredPosition);
+    }
   }, []);
 
   const formSchemaForEmployee = z.object({
@@ -110,6 +113,9 @@ const RegisterEmployee = () => {
     }),
     age: z.string().min(1, {
       message: "年龄是必填项",
+    }),
+    desiredPosition: z.string().min(1, {
+      message: "期望岗位是必填项",
     }),
     phoneNumber: z.string().refine((value) => value.length === 11, {
       message: "请输入正确的电话号码",
@@ -146,6 +152,7 @@ const RegisterEmployee = () => {
       name: localStorage.getItem("name") || "",
       sex: localStorage.getItem("sex") || "",
       age: localStorage.getItem("age") || "",
+      desiredPosition: localStorage.getItem("desiredPosition") || "",
       phoneNumber: localStorage.getItem("phoneNumber") || "",
       email: localStorage.getItem("email") || "",
       address: localStorage.getItem("address") || "",
@@ -320,6 +327,27 @@ const RegisterEmployee = () => {
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={formForEmployee.control}
+                      name="desiredPosition"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-muted-foreground">
+                            期望岗位
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              id="desiredPosition"
+                              {...field}
+                              className="text-[1rem] w-50"
+                              value={desiredPosition}
+                              onChange={(e) => {setDesiredPosition(e.target.value), field.onChange(e)} }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </div>
                   <div className="flex gap-3">
                     <FormField
@@ -379,7 +407,7 @@ const RegisterEmployee = () => {
                             {...field}
                             className="text-[1rem]"
                             value={address}
-                            onChange={(e) => {setEmail(e.target.value), field.onChange(e)} }
+                            onChange={(e) => {setAddress(e.target.value), field.onChange(e)} }
                           />
                         </FormControl>
                         <FormMessage />
