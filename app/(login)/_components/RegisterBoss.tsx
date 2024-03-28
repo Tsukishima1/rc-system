@@ -74,10 +74,10 @@ const RegisterBoss = () => {
   const formForEmployer = useForm({
     resolver: zodResolver(formSchemaForEmployer),
     defaultValues: {
-      firstName: localStorage.getItem("firstName") || "",
-      sex: localStorage.getItem("sex") || "",
-      companyName: localStorage.getItem("companyName") || "",
-      position: localStorage.getItem("position") || "",
+      firstName: typeof window !== 'undefined' ? localStorage.getItem("firstName") || "" : "",
+      sex: typeof window !== 'undefined' ? localStorage.getItem("sex") || "" : "",
+      companyName: typeof window !== 'undefined' ? localStorage.getItem("companyName") || "" : "",
+      position: typeof window !== 'undefined' ? localStorage.getItem("position") || "" : "",
     },
   });
   const onSubmitForERform = () => {
