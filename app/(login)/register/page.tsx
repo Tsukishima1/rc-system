@@ -49,14 +49,13 @@ const LoginPage = () => {
     employeeReg({ username, password }).then(
       ({ data }) => {
         localStorage.setItem("username", username);
-
-        // 清空输入框
-        usernameRef.current!.value = "";
-        passwordRef.current!.value = "";
         localStorage.setItem("userId", data.id);
         toast.success("注册成功");
         router.push("/guide");
         localStorage.setItem("userType", "employee");
+        // 清空输入框
+        usernameRef.current!.value = "";
+        passwordRef.current!.value = "";
       },
       (err) => {
         console.log(err);
@@ -76,15 +75,13 @@ const LoginPage = () => {
     employerReg({ username, password }).then(
       ({ data }) => {
         localStorage.setItem("username", username);
-
-        // 清空输入框
-        usernameRef.current!.value = "";
-        passwordRef.current!.value = "";
-
         localStorage.setItem("userId", data.id);
         localStorage.setItem("userType", "employer");
         toast.success("注册成功");
         router.push("/guide");
+        // 清空输入框
+        usernameRef.current!.value = "";
+        passwordRef.current!.value = "";
       },
       (err) => {
         console.log(err);

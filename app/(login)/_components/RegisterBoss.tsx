@@ -30,8 +30,29 @@ import { useRouter } from "next/navigation";
 const RegisterBoss = () => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [sex, setSex] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [position, setPosition] = useState("");
+
   useEffect(() => {
     setIsMounted(true);
+    const storedFirstName = localStorage.getItem("firstName");
+    const storedSex = localStorage.getItem("sex");
+    const storedCompanyName = localStorage.getItem("companyName");
+    const storedPosition = localStorage.getItem("position");
+    if (storedFirstName) {
+      setFirstName(storedFirstName);
+    }
+    if (storedSex) {
+      setSex(storedSex);
+    }
+    if (storedCompanyName) {
+      setCompanyName(storedCompanyName);
+    }
+    if (storedPosition) {
+      setPosition(storedPosition);
+    }
   }, []);
 
   const userId =
@@ -54,10 +75,10 @@ const RegisterBoss = () => {
   const formForEmployer = useForm({
     resolver: zodResolver(formSchemaForEmployer),
     defaultValues: {
-      firstName: "",
-      sex: "",
-      companyName: "",
-      position: "",
+      firstName: localStorage.getItem("firstName") || "",
+      sex: localStorage.getItem("sex") || "",
+      companyName: localStorage.getItem("companyName") || "",
+      position: localStorage.getItem("position") || "",
     },
   });
   const onSubmitForERform = () => {

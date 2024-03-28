@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Form,
   FormField,
@@ -33,7 +33,73 @@ const RegisterEmployee = () => {
   const router = useRouter();
   const [status, setStatus] = useState("undefined");
   const [file, setFile] = useState<File | null>(null);
-  const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : "";
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : "";
+
+  const [name, setName] = useState("");
+  const [sex, setSex] = useState("");
+  const [age, setAge] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [degree, setDegree] = useState("");
+  const [school, setSchool] = useState("");
+  const [major, setMajor] = useState("");
+  const [award, setAward] = useState("");
+  const [project, setProject] = useState("");
+  const [skill, setSkill] = useState("");
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("name");
+    const storedSex = localStorage.getItem("sex");
+    const storedAge = localStorage.getItem("age");
+    const storedPhoneNumber = localStorage.getItem("phoneNumber");
+    const storedEmail = localStorage.getItem("email");
+    const storedAddress = localStorage.getItem("address");
+    const storedDegree = localStorage.getItem("degree");
+    const storedSchool = localStorage.getItem("school");
+    const storedMajor = localStorage.getItem("major");
+    const storedAward = localStorage.getItem("award");
+    const storedProject = localStorage.getItem("project");
+    const storedSkill = localStorage.getItem("skill");
+
+    if (storedName) {
+      setName(storedName);
+    }
+    if (storedSex) {
+      setSex(storedSex);
+    }
+    if (storedAge) {
+      setAge(storedAge);
+    }
+    if (storedPhoneNumber) {
+      setPhoneNumber(storedPhoneNumber);
+    }
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+    if (storedAddress) {
+      setAddress(storedAddress);
+    }
+    if (storedDegree) {
+      setDegree(storedDegree);
+    }
+    if (storedSchool) {
+      setSchool(storedSchool);
+    }
+    if (storedMajor) {
+      setMajor(storedMajor);
+    }
+    if (storedAward) {
+      setAward(storedAward);
+    }
+    if (storedProject) {
+      setProject(storedProject);
+    }
+    if (storedSkill) {
+      setSkill(storedSkill);
+    }
+  }, []);
 
   const formSchemaForEmployee = z.object({
     name: z.string().min(1, {
@@ -41,6 +107,9 @@ const RegisterEmployee = () => {
     }),
     sex: z.string().min(1, {
       message: "性别是必填项",
+    }),
+    age: z.string().min(1, {
+      message: "年龄是必填项",
     }),
     phoneNumber: z.string().refine((value) => value.length === 11, {
       message: "请输入正确的电话号码",
@@ -74,17 +143,18 @@ const RegisterEmployee = () => {
   const formForEmployee = useForm({
     resolver: zodResolver(formSchemaForEmployee),
     defaultValues: {
-      name: "",
-      sex: "",
-      phoneNumber: "",
-      email: "",
-      address: "",
-      degree: "",
-      school: "",
-      major: "",
-      award: "",
-      project: "",
-      skill: "",
+      name: localStorage.getItem("name") || "",
+      sex: localStorage.getItem("sex") || "",
+      age: localStorage.getItem("age") || "",
+      phoneNumber: localStorage.getItem("phoneNumber") || "",
+      email: localStorage.getItem("email") || "",
+      address: localStorage.getItem("address") || "",
+      degree: localStorage.getItem("degree") || "",
+      school: localStorage.getItem("school") || "",
+      major: localStorage.getItem("major") || "",
+      award: localStorage.getItem("award") || "",
+      project: localStorage.getItem("project") || "",
+      skill: localStorage.getItem("skill") || "",
     },
   });
 
@@ -116,11 +186,11 @@ const RegisterEmployee = () => {
 
   const onSubmitForEEform = () => {
     // 列出表单数据
-    // console.log(formForEmployee.getValues());
+    console.log(formForEmployee.getValues());
 
-    uploadResume({...formForEmployee.getValues(), userId}).then(
-      ({data}) => {
-        console.log(data.id);
+    uploadResume({ ...formForEmployee.getValues(), userId }).then(
+      ({ data }) => {
+
         localStorage.setItem("isLogin", "true");
 
         // 将表单所有数据压缩存入localStorage
@@ -128,7 +198,7 @@ const RegisterEmployee = () => {
         for (const key in formValues) {
           localStorage.setItem(key, formValues[key as keyof typeof formValues]);
         }
-        
+
         router.push("/");
       },
       (err) => {
@@ -178,7 +248,7 @@ const RegisterEmployee = () => {
                   onSubmit={formForEmployee.handleSubmit(onSubmitForEEform)}
                   className="flex flex-col gap-3 px-3"
                 >
-                  <div className="flex gap-3 items-end">
+                  <div className="flex gap-5 items-end">
                     <FormField
                       control={formForEmployee.control}
                       name="name"
@@ -192,6 +262,8 @@ const RegisterEmployee = () => {
                               id="name"
                               {...field}
                               className="text-[1rem] w-28"
+                              value={name}
+                              onChange={(e) => {setName(e.target.value), field.onChange(e)}}
                             />
                           </FormControl>
                           <FormMessage />
@@ -206,7 +278,7 @@ const RegisterEmployee = () => {
                           <FormControl>
                             <Select
                               name={field.name}
-                              defaultValue={field.value}
+                              defaultValue={sex || field.value}
                               onValueChange={field.onChange}
                             >
                               <SelectTrigger className="w-[90px]">
@@ -227,6 +299,27 @@ const RegisterEmployee = () => {
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={formForEmployee.control}
+                      name="age"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-muted-foreground">
+                            年龄
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              id="age"
+                              {...field}
+                              className="text-[1rem] w-28"
+                              value={age}
+                              onChange={(e) => {setAge(e.target.value), field.onChange(e)} }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </div>
                   <div className="flex gap-3">
                     <FormField
@@ -242,6 +335,8 @@ const RegisterEmployee = () => {
                               id="phoneNumber"
                               {...field}
                               className="text-[1rem]"
+                              value={phoneNumber}
+                              onChange={(e) => {setPhoneNumber(e.target.value), field.onChange(e)} }
                             />
                           </FormControl>
                           <FormMessage />
@@ -261,6 +356,8 @@ const RegisterEmployee = () => {
                               id="email"
                               {...field}
                               className="text-[1rem] w-80"
+                              value={email}
+                              onChange={(e) => {setEmail(e.target.value), field.onChange(e)} }
                             />
                           </FormControl>
                           <FormMessage />
@@ -281,6 +378,8 @@ const RegisterEmployee = () => {
                             id="address"
                             {...field}
                             className="text-[1rem]"
+                            value={address}
+                            onChange={(e) => {setEmail(e.target.value), field.onChange(e)} }
                           />
                         </FormControl>
                         <FormMessage />
@@ -297,7 +396,7 @@ const RegisterEmployee = () => {
                           <FormControl>
                             <Select
                               name={field.name}
-                              defaultValue={field.value}
+                              defaultValue={degree || field.value}
                               onValueChange={field.onChange}
                             >
                               <SelectTrigger className="w-[80px]">
@@ -332,6 +431,8 @@ const RegisterEmployee = () => {
                               id="school"
                               {...field}
                               className="text-[1rem]"
+                              value={school}
+                              onChange={(e) =>  {setSchool(e.target.value), field.onChange(e)}}
                             />
                           </FormControl>
                           <FormMessage />
@@ -351,6 +452,8 @@ const RegisterEmployee = () => {
                               id="major"
                               {...field}
                               className="text-[1rem]"
+                              value={major}
+                              onChange={(e) =>  {setMajor(e.target.value), field.onChange(e)}}
                             />
                           </FormControl>
                           <FormMessage />
@@ -367,7 +470,12 @@ const RegisterEmployee = () => {
                           获奖情况
                         </FormLabel>
                         <FormControl>
-                          <Textarea id="award" {...field} />
+                          <Textarea
+                            id="award"
+                            {...field}
+                            value={award}
+                            onChange={(e) =>  {setAward(e.target.value), field.onChange(e)}}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -382,7 +490,12 @@ const RegisterEmployee = () => {
                           专业技能
                         </FormLabel>
                         <FormControl>
-                          <Textarea id="skill" {...field} />
+                          <Textarea
+                            id="skill"
+                            {...field}
+                            value={skill}
+                            onChange={(e) => {setSkill(e.target.value), field.onChange(e)}}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -397,7 +510,12 @@ const RegisterEmployee = () => {
                           项目经历
                         </FormLabel>
                         <FormControl>
-                          <Textarea id="project" {...field} />
+                          <Textarea
+                            id="project"
+                            {...field}
+                            value={project}
+                            onChange={(e) =>  {setProject(e.target.value), field.onChange(e)}}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

@@ -6,8 +6,10 @@ import { Dot, Pencil, Mail, MapPin, NotepadText, Phone } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
+  const router = useRouter();
   // 未加载完成时显示loading
   const [isLoading, setIsLoading] = useState(true);
   const [userType, setUserType] = useState(""); // ["admin", "user"]
@@ -21,6 +23,7 @@ const ProfilePage = () => {
   const [userInfo, setUserInfo] = useState({
     name: "",
     sex: "",
+    age: "",
     phoneNumber: "",
     email: "",
     address: "",
@@ -34,8 +37,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const info = {
-      name: localStorage.getItem("username") || "",
+      name: localStorage.getItem("name") || "",
       sex: localStorage.getItem("sex") || "",
+      age: localStorage.getItem("age") || "",
       phoneNumber: localStorage.getItem("phoneNumber") || "",
       email: localStorage.getItem("email") || "",
       address: localStorage.getItem("address") || "",
@@ -66,19 +70,23 @@ const ProfilePage = () => {
     setBossInfo(info);
   },[]);
 
+  const handleClickEdit = () => {
+    router.push("/guide");
+  }
+
   return (
-    <div className="bg-zinc-100 min-h-screen py-20 dark:bg-zinc-800/50">
+    <div className="bg-zinc-100 min-h-screen py-20 px-10 dark:bg-zinc-800/50">
       {!isLoading && userType === "employee" && (
-        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-3xl shadow-xl max-w-[1000px] min-w-[600px] ">
+        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-3xl shadow-sm max-w-[1000px] min-w-[600px] ">
           <div className="flex items-center">
             <div className="flex items-center gap-3 flex-1">
               <NotepadText />
               <p className="text-3xl font-bold">我的简历</p>
             </div>
             <div className="flex justify-end">
-              <button className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800/70 text-zinc-800 dark:text-zinc-100 rounded-lg transition hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none">
-                编辑
-              </button>
+              <Button className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800/70 text-zinc-800 dark:text-zinc-100 rounded-lg transition hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none" onClick={handleClickEdit}>
+                重新编辑
+              </Button>
             </div>
           </div>
           <div className="flex justify-center items-center flex-col">
@@ -86,7 +94,7 @@ const ProfilePage = () => {
               <p className="font-bold text-3xl mb-1">{userInfo.name}</p>
               <div className="flex gap-3">
                 <p>{userInfo.sex}</p>
-                {/* <p>{userInfo.age}岁</p> */}
+                <p>{userInfo.age}岁</p>
               </div>
               <div className="flex gap-8">
                 <div className="flex gap-2 items-center">
@@ -156,15 +164,15 @@ const ProfilePage = () => {
       )}
 
       {!isLoading && userType === "employer" && (
-        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-3xl shadow-xl max-w-[1000px] min-w-[600px] ">
+        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-3xl shadow-sm max-w-[1000px] min-w-[600px] ">
           <div className="flex items-center">
             <div className="flex items-center gap-3 flex-1">
               <NotepadText />
               <p className="text-3xl font-bold">我的名片</p>
             </div>
             <div className="flex justify-end">
-              <button className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800/70 text-zinc-800 dark:text-zinc-100 rounded-lg transition hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none">
-                编辑
+              <button className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800/70 text-zinc-800 dark:text-zinc-100 rounded-lg transition hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:outline-none" onClick={handleClickEdit}>
+                重新编辑
               </button>
             </div>
           </div>
@@ -183,7 +191,7 @@ const ProfilePage = () => {
       )}
 
       {isLoading && (
-        <div className="bg-white dark:bg-zinc-800 mx-auto flex flex-col gap-10 cursor-default p-10 pb-28 rounded-3xl shadow-xl max-w-[1000px] min-w-[600px] ">
+        <div className="bg-white dark:bg-zinc-800 mx-auto flex flex-col gap-10 cursor-default p-10 pb-28 rounded-3xl shadow-sm max-w-[1000px] min-w-[600px] ">
           <Skeleton className="h-12 w-12" />
           <div className="space-y-5">
             <Skeleton className="h-4 w-full" />
