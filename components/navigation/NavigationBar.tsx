@@ -45,45 +45,33 @@ const NavigationBar = () => {
 
   const handleClickProfile = () => {
     // 跳转到用户id对应的个人资料页面
-    router.push(`/${localStorage.getItem("userId")}`);
+    router.push(`/profile/${localStorage.getItem("userId")}`);
   }
 
   return (
-    <div className="navigation-bar bg-zinc-100/70 p-4 flex items-center dark:bg-zinc-800 px-28">
+    <div className="navigation-bar bg-zinc-100/70 py-8 sm:py-4 flex items-center dark:bg-zinc-800 px-10 sm:px-28 xl:px-64">
       <div className="flex items-center">
         <CheckCheck />
-        <h1 className="ml-2 font-semibold text-xl cursor-default">
+        <a className="ml-2 font-semibold text-xl cursor-pointer" href="/">
           智能求职推荐系统
-        </h1>
+        </a>
         <Separator
           orientation="vertical"
-          className="w-[1px] h-10 mx-8 bg-zinc-300"
+          className="w-[1px] h-10 mx-8 hidden bg-zinc-300 sm:block"
         />
-        <div className=" ml-3 flex gap-8">
+        <div className=" ml-3 gap-8 hidden sm:flex">
           <Link
             className="text-zinc-500 hover:text-zinc-800 dark:text-zinc-300 dark:hover:text-zinc-100 transition dark:focus:text-zinc-100 focus:text-zinc-8 text-sm"
             href="/"
           >
             首页
           </Link>
-          <Link
+          {/* <Link
             className="text-zinc-500 hover:text-zinc-800 dark:text-zinc-300 dark:hover:text-zinc-100 transition dark:focus:text-zinc-100 focus:text-zinc-8 text-sm"
             href="/"
           >
             能力评价
-          </Link>
-          <Link
-            className="text-zinc-500 hover:text-zinc-800 dark:text-zinc-300 dark:hover:text-zinc-100 transition dark:focus:text-zinc-100 focus:text-zinc-8 text-sm"
-            href="/"
-          >
-            岗位推荐
-          </Link>
-          <Link
-            className="text-zinc-500 hover:text-zinc-800 dark:text-zinc-300 dark:hover:text-zinc-100 transition dark:focus:text-zinc-100 focus:text-zinc-8 text-sm"
-            href="/"
-          >
-            招聘推荐
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="flex flex-1 space-x-2 items-center justify-end gap-4">

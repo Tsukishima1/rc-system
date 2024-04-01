@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import NavigationBar from "@/components/navigation/NavigationBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,6 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster position="bottom-center"/>
+          <NavigationBar />
           {children}
         </ThemeProvider>
       </body>

@@ -75,9 +75,9 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="bg-zinc-100 min-h-screen py-20 px-10 dark:bg-zinc-800/50">
+    <div className="bg-zinc-100 min-h-screen py-10 px-48 sm:px-28 dark:bg-zinc-800/50">
       {!isLoading && userType === "employee" && (
-        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-3xl shadow-sm max-w-[1000px] min-w-[600px] ">
+        <main className="bg-white dark:bg-zinc-900 mx-auto flex flex-col gap-4 cursor-default p-20 pb-28 rounded-2xl shadow-sm max-w-[1000px] min-w-[600px] ">
           <div className="flex items-center">
             <div className="flex items-center gap-3 flex-1">
               <NotepadText />

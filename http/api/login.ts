@@ -50,4 +50,21 @@ export function uploadResume(data: any) {
   });
 }
 
-// 读取简历内容
+// 获取岗位列表
+export function getJobList() {
+  return myAxios({
+    url: "/api/job",
+    method: "get"
+  });
+}
+
+// 获取岗位详情
+export function getJobDetail(id: string) {
+  return myAxios({
+    url: "/api/job",
+    method: "get",
+    params: {
+      id
+    }
+  });
+}
