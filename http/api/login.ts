@@ -68,3 +68,22 @@ export function getJobDetail(id: string) {
     }
   });
 }
+
+// 获取推荐简历列表
+export function getRecommendResume() {
+  return myAxios({
+    url: "/api/resume",
+    method: "get"
+  });
+}
+
+// 获取简历详情
+export function getResumeDetail(id: string) {
+  return myAxios({
+    url: "/api/resume",
+    method: "get",
+    params: {
+      id
+    }
+  });
+}

@@ -192,12 +192,12 @@ const ProfilePage = () => {
 
       {isLoading && (
         <div className="bg-white dark:bg-zinc-800 mx-auto flex flex-col gap-10 cursor-default p-10 pb-28 rounded-3xl shadow-sm max-w-[1000px] min-w-[600px] ">
-          <Skeleton className="h-12 w-12" />
+          <Skeleton className="h-12 w-12 dark:bg-zinc-600" />
           <div className="space-y-5">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-[600px]" />
+            <Skeleton className="h-4 w-full dark:bg-zinc-700" />
+            <Skeleton className="h-4 w-full dark:bg-zinc-700" />
+            <Skeleton className="h-4 w-full dark:bg-zinc-700" />
+            <Skeleton className="h-4 w-[600px] dark:bg-zinc-700" />
           </div>
         </div>
       )}

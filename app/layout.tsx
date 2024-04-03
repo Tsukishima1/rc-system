@@ -26,7 +26,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster position="bottom-center"/>
-          <NavigationBar />
           {children}
         </ThemeProvider>
       </body>

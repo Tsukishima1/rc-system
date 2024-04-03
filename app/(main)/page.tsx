@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getJobList } from "@/http/api/login";
+import { getJobList, getRecommendResume } from "@/http/api/login";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -25,10 +25,27 @@ interface jobListProps {
   last_active: string;
   link: string;
 }
+interface resumeListProps {
+  id: string;
+  name: string;
+  sex: string;
+  age: string;
+  desiredPosition: string;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  degree: string;
+  school: string;
+  major: string;
+  award: string;
+  project: string;
+  skill: string;
+}
 
 export default function Home() {
   const router = useRouter();
   const [jobList, setJobList] = useState<jobListProps[]>([]);
+  const [resumeList, setResumeList] = useState<resumeListProps[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const [userType, setUserType] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -40,11 +57,20 @@ export default function Home() {
       setJobList(data);
       setIsLoading(false);
     });
+    getRecommendResume().then(({ data }) => {
+      data = JSON.parse(data);
+      setResumeList(data);
+      setIsLoading(false);
+    });
   }, []);
 
-  const openJobDetail = (id:string) => {
+  const openJobDetail = (id: string) => {
     const jobId = id;
     router.push(`/job/${jobId}`);
+  };
+  const openResumeDetail = (id: string) => {
+    const resumeId = id;
+    router.push(`/resume/${resumeId}`);
   };
 
   return (
@@ -90,19 +116,40 @@ export default function Home() {
             </div>
           </>
         )}
-        {userType === "boss" && !isLoading && (
+        {userType === "employer" && !isLoading && (
           <>
             <p className="text-[30px] font-bold text-zinc-600 dark:text-zinc-100 w-full text-center">
               推 荐 简 历
             </p>
+            <div className="gap-6 grid grid-cols-1 sm:grid-cols-2 w-full">
+              {resumeList.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="bg-zinc-50 flex flex-col p-5 py-7 rounded-md shadow-xs cursor-pointer gap-2 w-full hover:bg-zinc-100/80 border-1 dark:bg-zinc-800 hover:dark:bg-zinc-900/70 transition"
+                    onClick={() => openResumeDetail(item.id)}
+                  >
+                    <div className="flex gap-3 items-center">
+                      <p className="text-xl font-bold">{item.name}</p>
+                      <p className="text-zinc-600 dark:text-zinc-400">{item.desiredPosition}</p>
+                    </div>
+                    <div className="flex gap-2 text-muted-foreground items-center">
+                      <p className="py-[0.1rem] px-2 bg-zinc-200/60 shadow-sm rounded-sm text-[0.9rem] dark:bg-zinc-900 ">{item.degree}</p>
+                      <p>{item.school}</p>
+                      <p>{item.major}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </>
         )}
         {isLoading && (
-          <div className="bg-white dark:bg-zinc-800 mx-auto flex flex-col gap-6 cursor-default pt-5 rounded-3xl shadow-sm w-full">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-[600px]" />
+          <div className="mx-auto flex flex-col gap-6 cursor-default pt-5 rounded-3xl shadow-sm w-full">
+            <Skeleton className="h-4 w-full dark:bg-zinc-600" />
+            <Skeleton className="h-4 w-full dark:bg-zinc-600" />
+            <Skeleton className="h-4 w-full dark:bg-zinc-600" />
+            <Skeleton className="h-4 w-[600px] dark:bg-zinc-600" />
           </div>
         )}
       </div>
