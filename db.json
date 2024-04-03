@@ -180,83 +180,99 @@
   "job": [
     {
       "id": "1234",
-      "jobName": "前端开发工程师",
-      "companyName": "字节跳动",
+      "title": "前端开发工程师",
+      "company": "字节跳动",
       "salary": "10K-12K",
       "address": "北京",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握HTML、CSS、JavaScript等前端技术"
+      "description": "熟练掌握HTML、CSS、JavaScript等前端技术",
+      "hiring_manager": "王先生",
+      "last_active": "2周内活跃",
+      "link": "https://www.lagou.com/jobs/1234.html"
     },
     {
-      "id": "4321",
-      "jobName": "Java开发工程师",
-      "companyName": "腾讯",
-      "salary": "10K-12K",
+      "id": "5678",
+      "title": "Java开发工程师",
+      "company": "阿里巴巴",
+      "salary": "15K-20K",
+      "address": "杭州",
+      "education": "本科",
+      "description": "熟练掌握Java语言，熟悉Spring、MyBatis等框架",
+      "hiring_manager": "李先生",
+      "last_active": "1周内活跃",
+      "link": "https://www.lagou.com/jobs/5678.html"
+    },
+    {
+      "id": "90ab",
+      "title": "Python开发工程师",
+      "company": "腾讯",
+      "salary": "12K-15K",
       "address": "深圳",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握Java开发技术"
+      "description": "熟练掌握Python语言，熟悉Django、Flask等框架",
+      "hiring_manager": "张先生",
+      "last_active": "3周内活跃",
+      "link": "https://www.lagou.com/jobs/90ab.html"
     },
     {
-      "id": "1123",
-      "jobName": "产品经理",
-      "companyName": "阿里巴巴",
-      "salary": "10K-12K",
-      "address": "杭州",
-      "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握产品设计技术"
-    },
-    {
-      "id": "2245",
-      "jobName": "UI设计师",
-      "companyName": "百度",
+      "id": "cdef",
+      "title": "后端开发工程师",
+      "company": "百度",
       "salary": "10K-12K",
       "address": "北京",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握UI设计技术"
+      "description": "熟练掌握Java、Python等后端技术",
+      "hiring_manager": "赵先生",
+      "last_active": "1周内活跃",
+      "link": "https://www.lagou.com/jobs/cdef.html"
     },
     {
-      "id": "4464",
-      "jobName": "运营专员",
-      "companyName": "网易",
-      "salary": "10K-12K",
-      "address": "杭州",
-      "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握运营技术"
-    },
-    {
-      "id": "5123",
-      "jobName": "HR",
-      "companyName": "小米",
+      "id": "1234",
+      "title": "前端开发工程师",
+      "company": "字节跳动",
       "salary": "10K-12K",
       "address": "北京",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握HR技术"
+      "description": "熟练掌握HTML、CSS、JavaScript等前端技术",
+      "hiring_manager": "王先生",
+      "last_active": "2周内活跃",
+      "link": "https://www.lagou.com/jobs/1234.html"
     },
     {
-      "id": "3456",
-      "jobName": "运营专员",
-      "companyName": "网易",
-      "salary": "10K-12K",
+      "id": "5678",
+      "title": "Java开发工程师",
+      "company": "阿里巴巴",
+      "salary": "15K-20K",
       "address": "杭州",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握运营技术"
+      "description": "熟练掌握Java语言，熟悉Spring、MyBatis等框架",
+      "hiring_manager": "李先生",
+      "last_active": "1周内活跃",
+      "link": "https://www.lagou.com/jobs/5678.html"
     },
     {
-      "id": "6512",
-      "jobName": "HR",
-      "companyName": "小米",
-      "salary": "10K-12K",
-      "address": "北京",
+      "id": "90ab",
+      "title": "Python开发工程师",
+      "company": "腾讯",
+      "salary": "12K-15K",
+      "address": "深圳",
       "education": "本科",
-      "experience": "无",
-      "skill": "熟练掌握HR技术"
+      "description": "熟练掌握Python语言，熟悉Django、Flask等框架",
+      "hiring_manager": "张先生",
+      "last_active": "3周内活跃",
+      "link": "https://www.lagou.com/jobs/90ab.html"
+    },
+    {
+      "id": "91ab",
+      "title": "Python开发工程师",
+      "company": "腾讯",
+      "salary": "12K-15K",
+      "address": "深圳",
+      "education": "本科",
+      "description": "熟练掌握Python语言，熟悉Django、Flask等框架",
+      "hiring_manager": "张先生",
+      "last_active": "3周内活跃",
+      "link": "https://www.lagou.com/jobs/90ab.html"
     }
   ]
 }

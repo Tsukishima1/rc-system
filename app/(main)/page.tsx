@@ -15,10 +15,15 @@ import { set } from "zod";
 
 interface jobListProps {
   id: string;
-  jobName: string;
-  companyName: string;
+  title: string;
+  company: string;
   salary: string;
   address: string;
+  education: string;
+  description: string;
+  hiring_manager: string;
+  last_active: string;
+  link: string;
 }
 
 export default function Home() {
@@ -66,14 +71,14 @@ export default function Home() {
                     onClick={() => openJobDetail(item.id)}
                   >
                     <div className="flex w-full">
-                      <div className="flex-1 font-bold">{item.jobName}</div>
-                      <div className="text-muted-foreground text-amber-600">
+                      <div className="flex-1 font-bold">{item.title}</div>
+                      <div className="text-muted-foreground">
                         {item.salary}
                       </div>
                     </div>
                     <div className="flex w-full ">
                       <div className="w-full font-bold text-muted-foreground text-sm">
-                        {item.companyName}
+                        {item.company}
                       </div>
                       <div className="text-end w-full text-muted-foreground text-sm">
                         {item.address}
