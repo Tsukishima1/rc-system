@@ -34,6 +34,16 @@
       "id": "dbba",
       "username": "",
       "password": ""
+    },
+    {
+      "id": "5a91",
+      "username": "Towow",
+      "password": "jinx11125"
+    },
+    {
+      "id": "cdb4",
+      "username": "jinx",
+      "password": "123"
     }
   ],
   "employer": [
@@ -205,6 +215,64 @@
       "project": "33",
       "skill": "22",
       "userId": "ae77"
+    },
+    {
+      "id": "9910",
+      "name": "李弢阳",
+      "sex": "男",
+      "age": "21",
+      "desiredPosition": "后端开发",
+      "phoneNumber": "12344567789",
+      "email": "12344567789@qq.com",
+      "address": "广东省广州市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "计算机科学与技术",
+      "award": "暂无",
+      "project": "暂无",
+      "skill": "jvav",
+      "userId": "5a91"
+    },
+    {
+      "id": "103f",
+      "name": "李弢阳",
+      "sex": "男",
+      "age": "21",
+      "desiredPosition": [
+        "java",
+        "c++"
+      ],
+      "phoneNumber": "12344567789",
+      "email": "12344567789@qq.com",
+      "address": "123",
+      "degree": "本科",
+      "school": "123",
+      "major": "123",
+      "award": "123",
+      "project": "123",
+      "skill": "123",
+      "userId": "cdb4"
+    },
+    {
+      "id": "909f",
+      "name": "李弢阳",
+      "sex": "男",
+      "age": "21",
+      "desiredPosition": [
+        "java",
+        "c++",
+        "前端开发"
+      ],
+      "phoneNumber": "12344567789",
+      "email": "12344567789@qq.com",
+      "address": "123",
+      "degree": "本科",
+      "school": "123",
+      "major": "123",
+      "award": "1233",
+      "project": "123",
+      "skill": "123",
+      "userId": "cdb4"
     }
   ],
   "bossCard": [

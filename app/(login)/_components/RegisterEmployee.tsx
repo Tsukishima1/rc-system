@@ -26,6 +26,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import { uploadResume } from "@/http/api/login";
 import { useRouter } from "next/navigation";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import Jobs from "./data";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const RegisterEmployee = () => {
   const router = useRouter();
@@ -46,7 +51,7 @@ const RegisterEmployee = () => {
   const [award, setAward] = useState("");
   const [project, setProject] = useState("");
   const [skill, setSkill] = useState("");
-  const [desiredPosition, setDesiredPosition] = useState("");
+  const [desiredPosition, setDesiredPosition] = useState<string[]>([]);
 
   useEffect(() => {
     const storedName = localStorage.getItem("name");
@@ -100,7 +105,7 @@ const RegisterEmployee = () => {
       setSkill(storedSkill);
     }
     if (storedDesiredPosition) {
-      setDesiredPosition(storedDesiredPosition);
+      setDesiredPosition(storedDesiredPosition.split(","));
     }
   }, []);
 
@@ -114,7 +119,7 @@ const RegisterEmployee = () => {
     age: z.string().min(1, {
       message: "年龄是必填项",
     }),
-    desiredPosition: z.string().min(1, {
+    desiredPosition: z.array(z.string()).min(1, {
       message: "期望岗位是必填项",
     }),
     phoneNumber: z.string().refine((value) => value.length === 11, {
@@ -270,7 +275,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem] w-28"
                               value={name}
-                              onChange={(e) => {setName(e.target.value), field.onChange(e)}}
+                              onChange={(e) => { setName(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -320,7 +325,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem] w-28"
                               value={age}
-                              onChange={(e) => {setAge(e.target.value), field.onChange(e)} }
+                              onChange={(e) => { setAge(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -332,17 +337,87 @@ const RegisterEmployee = () => {
                       name="desiredPosition"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-muted-foreground">
-                            期望岗位
-                          </FormLabel>
                           <FormControl>
-                            <Input
-                              id="desiredPosition"
-                              {...field}
-                              className="text-[1rem] w-50"
-                              value={desiredPosition}
-                              onChange={(e) => {setDesiredPosition(e.target.value), field.onChange(e)} }
-                            />
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                >
+                                  {desiredPosition.length === 0 ? (
+                                    <>选择期望岗位</>
+                                  ) : (
+                                    <>{desiredPosition.join(", ")}</>
+                                  )}
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle>期望岗位</DialogTitle>
+                                </DialogHeader>
+                                <div className="flex flex-col gap-3">
+                                  <Label className="text-muted-foreground">计算机类</Label>
+                                  <div>
+                                    {Jobs.computer.map((job, index) => (
+                                      <Button
+                                        variant="outline"
+                                        className={cn("mr-2 mb-2",
+                                          desiredPosition.includes(job) ? "text-black bg-zinc-200/80" : "text-muted-foreground/60"
+                                        )}
+                                        key={index}
+                                        onClick={() => {
+                                          if (desiredPosition.includes(job)) {
+                                            // 如果 job 已经被选中，那么我们将它从数组中删除
+                                            setDesiredPosition(desiredPosition.filter(item => item !== job));
+                                          } else {
+                                            // 如果 job 没有被选中，那么我们将它添加到数组中
+                                            setDesiredPosition([...desiredPosition, job]);
+                                          }
+                                          field.onChange(job);
+                                        }}
+                                      >
+                                        {job}
+                                      </Button>
+                                    ))}
+                                  </div>
+                                  <Label className="text-muted-foreground">电子类</Label>
+                                  <div>
+                                    {Jobs.electronics.map((job, index) => (
+                                      <Button
+                                        variant="outline"
+                                        className={cn("mr-2 mb-2",
+                                          desiredPosition.includes(job) ? "text-black bg-zinc-200/80" : "text-muted-foreground/60"
+                                        )}
+                                        key={index}
+                                        onClick={() => {
+                                          if (desiredPosition.includes(job)) {
+                                            setDesiredPosition(desiredPosition.filter(item => item !== job));
+                                          } else {
+                                            setDesiredPosition([...desiredPosition, job]);
+                                          }
+                                          field.onChange(job);
+                                        }}
+                                      >
+                                        {job}
+                                      </Button>
+                                    ))}
+                                  </div>
+                                </div>
+                                <DialogFooter>
+                                  <DialogClose asChild>
+                                    <Button
+                                      className="mt-1 w-full"
+                                      onClick={() => {
+                                        field.onChange(desiredPosition);
+                                      }}
+                                    >
+                                      <Check className="w-4 h-4 mr-2" />
+                                      确定
+                                    </Button>
+                                  </DialogClose>
+                                </DialogFooter>
+                              </DialogContent>
+
+                            </Dialog>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -364,7 +439,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem]"
                               value={phoneNumber}
-                              onChange={(e) => {setPhoneNumber(e.target.value), field.onChange(e)} }
+                              onChange={(e) => { setPhoneNumber(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -385,7 +460,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem] w-80"
                               value={email}
-                              onChange={(e) => {setEmail(e.target.value), field.onChange(e)} }
+                              onChange={(e) => { setEmail(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -407,7 +482,7 @@ const RegisterEmployee = () => {
                             {...field}
                             className="text-[1rem]"
                             value={address}
-                            onChange={(e) => {setAddress(e.target.value), field.onChange(e)} }
+                            onChange={(e) => { setAddress(e.target.value), field.onChange(e) }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -460,7 +535,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem]"
                               value={school}
-                              onChange={(e) =>  {setSchool(e.target.value), field.onChange(e)}}
+                              onChange={(e) => { setSchool(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -481,7 +556,7 @@ const RegisterEmployee = () => {
                               {...field}
                               className="text-[1rem]"
                               value={major}
-                              onChange={(e) =>  {setMajor(e.target.value), field.onChange(e)}}
+                              onChange={(e) => { setMajor(e.target.value), field.onChange(e) }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -502,7 +577,7 @@ const RegisterEmployee = () => {
                             id="award"
                             {...field}
                             value={award}
-                            onChange={(e) =>  {setAward(e.target.value), field.onChange(e)}}
+                            onChange={(e) => { setAward(e.target.value), field.onChange(e) }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -522,7 +597,7 @@ const RegisterEmployee = () => {
                             id="skill"
                             {...field}
                             value={skill}
-                            onChange={(e) => {setSkill(e.target.value), field.onChange(e)}}
+                            onChange={(e) => { setSkill(e.target.value), field.onChange(e) }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -542,7 +617,7 @@ const RegisterEmployee = () => {
                             id="project"
                             {...field}
                             value={project}
-                            onChange={(e) =>  {setProject(e.target.value), field.onChange(e)}}
+                            onChange={(e) => { setProject(e.target.value), field.onChange(e) }}
                           />
                         </FormControl>
                         <FormMessage />
