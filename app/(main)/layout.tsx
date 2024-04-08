@@ -4,7 +4,7 @@ const MainLayout = ({children}:{
     children: React.ReactNode
   }) => {
     return ( 
-        <div>
+        <div className="min-h-screen pt-16">
             <NavigationBar />
             {children}
         </div>

@@ -77,3 +77,7 @@
     font-family: system-ui !important;
   }
 }
+
+body {
+  min-height: 100vh;
+}

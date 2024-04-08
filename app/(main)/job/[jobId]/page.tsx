@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getJobDetail } from "@/http/api/login";
 import { ChevronLeft, MapPin, User } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -38,7 +39,7 @@ const JobPage = () => {
     }, [jobId]);
 
     return (
-        <div className="px-10 sm:px-28 py-10 flex flex-row flex-wrap gap-6 justify-center xl:px-64 items-center w-full">
+        <div className="px-10 sm:px-28 py-10 flex flex-row flex-wrap justify-center xl:px-64 items-center w-full">
             <div className="w-full bg-zinc-100/60 shadow-sm rounded-md cursor-default flex flex-col dark:bg-zinc-800 overflow-hidden">
                 <div className="flex mb-5 justify-center-center bg-zinc-700 relative p-10 flex-col pb-8 dark:bg-zinc-900">
                     {isLoading && (
@@ -76,6 +77,7 @@ const JobPage = () => {
                                 <p className="text-[1.1rem]">
                                     {jobDetail?.company}
                                 </p>
+                                <a className="text-zinc-400 ml-3 underline underline-offset-4 transition hover:text-zinc-300" href={jobDetail?.link}>{jobDetail?.link}</a>
                             </div>
                         </>
                     )}
@@ -114,6 +116,9 @@ const JobPage = () => {
                         </>
                     )}
                 </div>
+            </div>
+            <div className="bg-zinc-100/40 w-[90%] p-5 rounded-b-md shadow-sm px-10">
+                <p>岗位匹配度</p>
             </div>
         </div>
     );

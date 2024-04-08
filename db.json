@@ -44,6 +44,16 @@
       "id": "cdb4",
       "username": "jinx",
       "password": "123"
+    },
+    {
+      "id": "a3eb",
+      "username": "jinx",
+      "password": "xxx"
+    },
+    {
+      "id": "1594",
+      "username": "jinx",
+      "password": "xxx"
     }
   ],
   "employer": [
@@ -111,128 +121,19 @@
       "id": "f5f1",
       "username": "jinx",
       "password": "xxx"
+    },
+    {
+      "id": "4024",
+      "username": "jinx",
+      "password": "xxx"
+    },
+    {
+      "id": "f0c3",
+      "username": "Tsuski",
+      "password": "sssss"
     }
   ],
   "resume": [
-    {
-      "id": "7f45",
-      "name": "啊1",
-      "sex": "男",
-      "age": "1",
-      "desiredPosition": "前端开发实习生",
-      "phoneNumber": "19866509957",
-      "email": "19866509957@qq.com",
-      "address": "Gdss",
-      "degree": "博士",
-      "school": "123",
-      "major": "232222",
-      "award": "123213",
-      "project": "3333",
-      "skill": "123123",
-      "userId": "f20a"
-    },
-    {
-      "id": "30b1",
-      "name": "啊啊啊",
-      "sex": "女",
-      "age": "2",
-      "desiredPosition": "前端开发实习生",
-      "phoneNumber": "19866509957",
-      "email": "19866509957@qq.com",
-      "address": "Gdss",
-      "degree": "博士",
-      "school": "123",
-      "major": "232222",
-      "award": "123213",
-      "project": "3333",
-      "skill": "123123",
-      "userId": "f20a"
-    },
-    {
-      "id": "7ade",
-      "name": "吴苡瑕",
-      "sex": "女",
-      "age": "20",
-      "desiredPosition": "前端开发实习生",
-      "phoneNumber": "19866509957",
-      "email": "19866509957@qq.com",
-      "address": "广东省韶关市",
-      "degree": "本科",
-      "school": "广东海洋大学",
-      "major": "信息管理与信息系统",
-      "award": "11",
-      "project": "33",
-      "skill": "22",
-      "userId": "ae88"
-    },
-    {
-      "id": "7a1x",
-      "name": "张三",
-      "sex": "男",
-      "age": "22",
-      "desiredPosition": "后端开发",
-      "phoneNumber": "12345678955",
-      "email": "12345678955@qq.com",
-      "address": "北京市朝阳区",
-      "degree": "本科",
-      "school": "浙江师范大学",
-      "major": "电子科学与技术",
-      "award": "11",
-      "project": "33",
-      "skill": "22",
-      "userId": "ae77"
-    },
-    {
-      "id": "7a1b",
-      "name": "张三",
-      "sex": "男",
-      "age": "22",
-      "desiredPosition": "后端开发",
-      "phoneNumber": "12345678955",
-      "email": "12345678955@qq.com",
-      "address": "北京市朝阳区",
-      "degree": "本科",
-      "school": "浙江师范大学",
-      "major": "电子科学与技术",
-      "award": "11",
-      "project": "33",
-      "skill": "22",
-      "userId": "ae77"
-    },
-    {
-      "id": "7a12",
-      "name": "张三",
-      "sex": "男",
-      "age": "22",
-      "desiredPosition": "后端开发",
-      "phoneNumber": "12345678955",
-      "email": "12345678955@qq.com",
-      "address": "北京市朝阳区",
-      "degree": "本科",
-      "school": "浙江师范大学",
-      "major": "电子科学与技术",
-      "award": "11",
-      "project": "33",
-      "skill": "22",
-      "userId": "ae77"
-    },
-    {
-      "id": "9910",
-      "name": "李弢阳",
-      "sex": "男",
-      "age": "21",
-      "desiredPosition": "后端开发",
-      "phoneNumber": "12344567789",
-      "email": "12344567789@qq.com",
-      "address": "广东省广州市",
-      "degree": "本科",
-      "school": "广东海洋大学",
-      "major": "计算机科学与技术",
-      "award": "暂无",
-      "project": "暂无",
-      "skill": "jvav",
-      "userId": "5a91"
-    },
     {
       "id": "103f",
       "name": "李弢阳",
@@ -273,6 +174,90 @@
       "project": "123",
       "skill": "123",
       "userId": "cdb4"
+    },
+    {
+      "id": "26d4",
+      "name": "小明",
+      "sex": "男",
+      "age": "22",
+      "desiredPosition": [
+        "c++",
+        "算法工程师",
+        "python"
+      ],
+      "phoneNumber": "12345667789",
+      "email": "12345667789@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "112",
+      "project": "123",
+      "skill": "123",
+      "userId": "1594"
+    },
+    {
+      "id": "26d4",
+      "name": "小明",
+      "sex": "男",
+      "age": "22",
+      "desiredPosition": [
+        "c++",
+        "算法工程师",
+        "python"
+      ],
+      "phoneNumber": "12345667789",
+      "email": "12345667789@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "112",
+      "project": "123",
+      "skill": "123",
+      "userId": "1594"
+    },
+    {
+      "id": "26d4",
+      "name": "小明",
+      "sex": "男",
+      "age": "22",
+      "desiredPosition": [
+        "c++",
+        "算法工程师",
+        "python"
+      ],
+      "phoneNumber": "12345667789",
+      "email": "12345667789@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "112",
+      "project": "123",
+      "skill": "123",
+      "userId": "1594"
+    },
+    {
+      "id": "26d4",
+      "name": "小明",
+      "sex": "男",
+      "age": "22",
+      "desiredPosition": [
+        "c++",
+        "算法工程师",
+        "python"
+      ],
+      "phoneNumber": "12345667789",
+      "email": "12345667789@qq.com",
+      "address": "广东省韶关市",
+      "degree": "本科",
+      "school": "广东海洋大学",
+      "major": "信息管理与信息系统",
+      "award": "112",
+      "project": "123",
+      "skill": "123",
+      "userId": "1594"
     }
   ],
   "bossCard": [
@@ -299,6 +284,14 @@
       "companyName": "字节跳动",
       "position": "HR",
       "userId": "f5f1"
+    },
+    {
+      "id": "0233",
+      "firstName": "周",
+      "sex": "男",
+      "companyName": "字节跳动",
+      "position": "HR",
+      "userId": "f0c3"
     }
   ],
   "job": [

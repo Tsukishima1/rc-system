@@ -87,3 +87,12 @@ export function getResumeDetail(id: string) {
     }
   });
 }
+
+// 添加岗位
+export function addJob(data: any) {
+  return myAxios({
+    url: "/api/job",
+    method: "post",
+    data
+  });
+}

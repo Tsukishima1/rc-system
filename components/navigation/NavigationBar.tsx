@@ -49,11 +49,11 @@ const NavigationBar = () => {
   }
 
   return (
-    <div className="navigation-bar bg-zinc-100/70 py-8 sm:py-4 flex items-center dark:bg-zinc-800 px-10 sm:px-28 xl:px-64">
+    <div className="navigation-bar bg-zinc-100 py-8 sm:py-4 flex items-center dark:bg-zinc-800 px-10 sm:px-28 xl:px-64 top-0 w-full fixed">
       <div className="flex items-center">
         <CheckCheck />
         <a className="ml-2 font-semibold text-xl cursor-pointer" href="/">
-          智能求职推荐系统
+          图聘 TuPin
         </a>
         <Separator
           orientation="vertical"
